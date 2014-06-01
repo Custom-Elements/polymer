@@ -10,7 +10,9 @@ Yep -- it's a node module.
 npm install --save Custom-Elements/polymer
 ```
 
-And, into your app, assuming you have a `./index.html`:
+And, into your app, assuming you have a `./index.html` and can serve the
+contents of `./node_modules` with something like
+[serve-static](https://github.com/expressjs/serve-static):
 
 ```html
 <!DOCTYPE html>
