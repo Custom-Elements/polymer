@@ -11269,7 +11269,11 @@ scope.api.declaration.path = path;
       // register the prototype with HTMLElement for name lookup
       HTMLElement.register(name, this.prototype);
       // register the custom type
-      this.ctor = document.registerElement(name, info);
+      try {
+        this.ctor = document.registerElement(name, info);
+      } catch (e) {
+        console.warn("Handling duplicate registration for element", name);
+      }
     },
 
     findTypeExtension: function(name) {
