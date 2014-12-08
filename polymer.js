@@ -11272,7 +11272,8 @@ scope.api.declaration.path = path;
       try {
         this.ctor = document.registerElement(name, info);
       } catch (e) {
-        console.warn("Handling duplicate registration for element", name);
+        //yes, already registered
+        this.ctor = HTMLElement.getPrototypeForTag(name);
       }
     },
 
