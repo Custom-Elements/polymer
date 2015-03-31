@@ -17,6 +17,5 @@
   "author": "Will Ballard <wballard@mailframe.net>",
   "license": "ISC",
   "dependencies": {
-    "bower": "^1.3.12"
   }
 }
