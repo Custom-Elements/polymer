@@ -10899,7 +10899,22 @@ scope.api.declaration.path = path;
 
       var privateName = name + '_';
       var privateObservable  = name + 'Observable_';
+
+      /*
+      This is failing as on Chrome 66 with "Illegal invocation" on autocapitalize, which unlike any other
+      property is a native field on HTMLElement. It's unclear whether this call needs to be made at all
+      since  "Illegal invocation" would occur for any existing native field on HTMLElement at this point
+      and it seems that the accessors are not existing, and if they were it would cause an error trying
+      to redefine them. However, to be safe-ish, we are keeping the assignment and silently swallowing
+      the error.
+      */
+     try {
       proto[privateName] = proto[name];
+      }
+      catch(e) {
+        proto[privateName] = undefined;
+        return;
+      }
 
       Object.defineProperty(proto, name, {
         get: function() {
